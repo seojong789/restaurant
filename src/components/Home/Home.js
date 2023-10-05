@@ -198,7 +198,15 @@ function Collection() {
 function Home() {
     return (
         <div style={{display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center'}} className="HomeContainer">
-            <h1 style={{color:'black', marginTop:'3%', marginBottom:'0'}}>어디갈래</h1>
+            <h1 style={{
+                color: 'black',
+                marginTop: '3%',
+                marginBottom: '0',
+                fontSize: '50px',
+                fontFamily: 'YEONGJUPunggiGinsengTTF, sans-serif'
+                }}>
+                어디갈래
+                </h1>
             <Collection />
         </div>
     );

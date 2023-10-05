@@ -19,33 +19,33 @@ const Rec = () => {
   const [westernList] = useState([
     {
       restaurant: {
-        name: '식당1',
+        name: '베아토',
         main: '로제 스파게티',
-        detail: '추가설명',
+        detail: '#커플데이트 추천',
         category: '양식'
       }
     },
     {
       restaurant: {
-        name: '식당2',
+        name: '핵스테이크',
         main: '스테이크',
-        detail: '추가설명',
+        detail: '#유명방송출연',
         category: '양식'
       }
     },
     {
       restaurant: {
-        name: '식당3',
+        name: '치즈치즈',
         main: '맥앤치즈',
-        detail: '추가설명',
+        detail: '#반려견동반식당',
         category: '양식'
       }
     },
     {
       restaurant: {
-        name: '식당4',
+        name: '그리프',
         main: '감바스',
-        detail: '추가설명',
+        detail: '#친구모임추천',
         category: '양식'
       }
     },
@@ -54,33 +54,33 @@ const Rec = () => {
   const [chineseList] = useState([
     {
       restaurant: {
-        name: '식당1',
+        name: '양자강',
         main: '마라탕',
-        detail: '추가설명',
+        detail: '#유명방송출연',
         category: '중식'
       }
     },
     {
       restaurant: {
-        name: '식당2',
+        name: '중국새우',
         main: '깐풍새우',
-        detail: '추가설명',
+        detail: '#회식에 추천',
         category: '중식'
       }
     },
     {
       restaurant: {
-        name: '식당3',
+        name: '왕짜장',
         main: '삼선짜장',
-        detail: '추가설명',
+        detail: '#가족외식추천',
         category: '중식'
       }
     },
     {
       restaurant: {
-        name: '식당4',
+        name: '베이징',
         main: '유산슬',
-        detail: '추가설명',
+        detail: '#퀄리티높은중식당',
         category: '중식'
       }
     },
@@ -89,33 +89,33 @@ const Rec = () => {
   const [koreanList] = useState([
     {
       restaurant: {
-        name: '식당1',
+        name: '화로구이',
         main: '통삼겹살',
-        detail: '추가설명',
+        detail: '#가족외식추천',
         category: '한식'
       }
     },
     {
       restaurant: {
-        name: '식당2',
+        name: '무랑고기',
         main: '무쌈말이',
-        detail: '추가설명',
+        detail: '#가성비식당',
         category: '한식'
       }
     },
     {
       restaurant: {
-        name: '식당3',
+        name: '명품고기',
         main: '소불고기',
-        detail: '추가설명',
+        detail: '#어른들모임에추천',
         category: '한식'
       }
     },
     {
       restaurant: {
-        name: '식당4',
+        name: '골뱅이나라',
         main: '골뱅이무침',
-        detail: '추가설명',
+        detail: '#술자리에 적합',
         category: '한식'
       }
     },
@@ -124,33 +124,33 @@ const Rec = () => {
   const [japaneseList] = useState([
     {
       restaurant: {
-        name: '식당1',
+        name: '미가라멘',
         main: '라멘',
-        detail: '추가설명',
+        detail: '#정통일본풍',
         category: '일식'
       }
     },
     {
       restaurant: {
-        name: '식당2',
+        name: '로산진',
         main: '스키야키',
-        detail: '추가설명',
+        detail: '#커플데이트추천',
         category: '일식'
       }
     },
     {
       restaurant: {
-        name: '식당3',
+        name: '쿠모리',
         main: '스시',
-        detail: '추가설명',
+        detail: '#가성비초밥',
         category: '일식'
       }
     },
     {
       restaurant: {
-        name: '식당4',
+        name: '덴푸라',
         main: '덴푸라',
-        detail: '추가설명',
+        detail: '#숨겨진맛집',
         category: '일식'
       }
     },
@@ -159,33 +159,33 @@ const Rec = () => {
   const [desertList] = useState([
     {
       restaurant: {
-        name: '식당1',
+        name: '리타르트',
         main: '타르트',
-        detail: '추가설명',
+        detail: '#분위기좋음',
         category: '디저트'
       }
     },
     {
       restaurant: {
-        name: '식당2',
+        name: '헤블랑',
         main: '휘낭시에',
-        detail: '추가설명',
+        detail: '#인스타감성',
         category: '디저트'
       }
     },
     {
       restaurant: {
-        name: '식당3',
+        name: '카페 그라토',
         main: '다쿠아즈',
-        detail: '추가설명',
+        detail: '#유명방송출연',
         category: '디저트'
       }
     },
     {
       restaurant: {
-        name: '식당4',
+        name: '하이호비',
         main: '크렘 브륄레',
-        detail: '추가설명',
+        detail: '#편안한 분위기',
         category: '디저트'
       }
     },
@@ -274,7 +274,7 @@ const Rec = () => {
                     {/* onClick={() => window.open(`https://www.acmicpc.net/problem/${problem.number}`, '_blank')} */}
                     <div className='problem-item' onClick={() => showModal(restaurant.name)}>
                       <div className='card-top'>
-                        <div className='problem-item-title'>{restaurant.name}</div>
+                        <div className='problem-item-title' style={{color:'black'}}>{restaurant.name}</div>
                         <div className='problem-item-num font-PreR'>예약하기</div>
                       </div>
 
@@ -288,14 +288,14 @@ const Rec = () => {
                             <br/>
                             <span>카테고리:</span>
                             <br/>
-                            <span>추가설명:</span>
+                            <span>태그:</span>
                           </div>
                           <div className='problem-item-info2'>
                             <span>{restaurant.main}</span>
                             <br/>
                             <span>{restaurant.category}</span>
                             <br/>
-                            <span>{restaurant.detail}</span>
+                            <span style={{color:'blueviolet'}}>{restaurant.detail}</span>
                           </div>
                       </div>
                     </div>
