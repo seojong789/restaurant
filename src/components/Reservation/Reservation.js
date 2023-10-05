@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Rec from './Rec';
 
 const { kakao } = window;
 
-const KakaoMap = () => {
+const Reservation = ({ selectedList }) => {
   const [map, setMap] = useState(null);
-  const [infowindows, setInfowindows] = useState({}); // 정보 창 관리를 위한 상태 추가
+  const [infowindows, setInfowindows] = useState({});
   const [restaurantList, setRestaurantList] = useState([]);
 
   useEffect(() => {
-    // 사용자의 현재 위치를 가져오는 함수
     const getCurrentLocation = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -18,54 +16,48 @@ const KakaoMap = () => {
           var container = document.getElementById('map');
           var options = {
             center: new kakao.maps.LatLng(latitude, longitude),
-            level: 3,
+            level: 5,
           };
           var map = new kakao.maps.Map(container, options);
           setMap(map);
 
-          // 사용자의 현재 위치에 기본 마커 표시
           var userMarker = new kakao.maps.Marker({
             position: new kakao.maps.LatLng(latitude, longitude),
             map: map,
           });
 
-          // 주변 식당 정보 데이터 (예제 데이터)
-          var restaurantData = [
-            {
-              name: '식당 1',
-              latlng: new kakao.maps.LatLng(latitude + 0.001, longitude + 0.001),
-              address: '식당 1 주소',
-              description: '식당 1 설명',
-            },
-            {
-              name: '식당 2',
-              latlng: new kakao.maps.LatLng(latitude - 0.001, longitude - 0.001),
-              address: '식당 2 주소',
-              description: '식당 2 설명',
-            },
-          ];
+          // selectedList를 restaurantData 형식으로 변환
+          var restaurantData = selectedList.map((restaurant) => ({
+            name: restaurant.restaurant.name,
+            main: restaurant.restaurant.main, // restaurant.name와 restaurant.main 추가
+            latlng: new kakao.maps.LatLng(
+              latitude + Math.random() * 0.01 - 0.005,
+              longitude + Math.random() * 0.01 - 0.005
+            ),
+            address: '식당 주소',
+            description: restaurant.restaurant.detail,
+          }));
 
-          setRestaurantList(restaurantData); // 테이블로 표시할 데이터
+          setRestaurantList(restaurantData);
 
-          // 마커와 정보 창 생성 (식당에만 이미지 마커 적용)
           restaurantData.forEach((restaurant) => {
             var restaurantMarkerImage = new kakao.maps.MarkerImage(
-              '/restaurant-marker.png', // 이미지 파일 경로
-              new kakao.maps.Size(30, 30), // 마커 이미지의 크기
-              { offset: new kakao.maps.Point(15, 15) } // 마커 이미지의 중심을 나타내는 좌표
+              '/restaurant-marker.png',
+              new kakao.maps.Size(30, 30),
+              { offset: new kakao.maps.Point(15, 15) }
             );
 
             var marker = new kakao.maps.Marker({
               position: restaurant.latlng,
               map: map,
-              image: restaurantMarkerImage, // 식당 마커에 이미지 적용
+              image: restaurantMarkerImage,
             });
 
             var infowindow = new kakao.maps.InfoWindow({
               content: `
                 <div>
-                  <h3>${restaurant.name}</h3>
-                  <p>주소: ${restaurant.address}</p>
+                  <h3 style="color: black;">${restaurant.name}</h3>
+                  <p>메인 메뉴: ${restaurant.main}</p> <!-- restaurant.main을 표시 -->
                   <p>설명: ${restaurant.description}</p>
                   <div style="text-align: right;">
                     <button data-latlng="${restaurant.latlng.toString()}">X</button>
@@ -74,16 +66,13 @@ const KakaoMap = () => {
               `,
             });
 
-            // 마커 클릭 이벤트 처리
             kakao.maps.event.addListener(marker, 'click', function () {
-              // 클릭된 마커의 위도, 경도 정보를 데이터 속성으로 가져와서 정보 창을 닫을 때 사용
               const latlngString = restaurant.latlng.toString();
-              infowindows[latlngString] = infowindow; // 정보 창을 관리하기 위해 상태 업데이트
+              infowindows[latlngString] = infowindow;
               infowindow.open(map, marker);
             });
           });
 
-          // 정보 창 닫기 버튼 클릭 이벤트 처리
           container.addEventListener('click', (e) => {
             if (e.target.tagName === 'BUTTON') {
               const latlngString = e.target.getAttribute('data-latlng');
@@ -100,17 +89,15 @@ const KakaoMap = () => {
       );
     };
 
-    getCurrentLocation(); // getCurrentLocation 함수 호출
+    getCurrentLocation();
 
-  }, [infowindows]);
+  }, [infowindows, selectedList]);
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-      <div id="map" style={{ width: '1100px', height: '500px', marginTop:'5%'}}></div>
-
-      <Rec></Rec>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div id="map" style={{ width: '1100px', height: '500px', marginTop: '5%' }}></div>
     </div>
   );
 };
 
-export default KakaoMap;
+export default Reservation;

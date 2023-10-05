@@ -1,7 +1,8 @@
 /* 문제 추천 시작 */
 .problem-layout-01 {
   padding: 100px 0 180px;
-  background-color: #F8F8F8;
+  background-color: white;
+  // height: 100vh;
 
   .problem-rec-layout {
     display: flex;
@@ -45,6 +46,22 @@
         border-radius: 70px;
         border: hidden;
         background: linear-gradient(to right,  #11ba87, #75D779 40%);
+        
+        transition: box-shadow 0.2s;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+        }
+      }
+      .rec-clear-btn {
+        margin-top: 40px;
+        width: 180px;
+        height: 45px;
+        color: white;
+        font-weight: 700;
+        border-radius: 70px;
+        border: hidden;
+        background: linear-gradient(to right,  #cf2020, #d16e50 40%);
         
         transition: box-shadow 0.2s;
         &:hover {
