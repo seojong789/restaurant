@@ -8,11 +8,13 @@ import 'swiper/css/scrollbar';
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 import './Rec.scss'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ReserveModal from './ReserveModal';
+import Reservation from './Reservation';
 
 const Rec = () => {
   const location = useLocation();
+  const [rsName, setRsName] = useState();
   const {category} = location.state || {};
   const [westernList] = useState([
     {
@@ -214,19 +216,25 @@ const Rec = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(false); // Modal의 가시성 상태
   // 예약하기 버튼을 클릭했을 때 Modal을 열기 위한 함수
-  const showModal = () => {
+  const showModal = (restaurantName) => {
     setIsModalVisible(true);
+    setRsName(restaurantName);
   };
   // Modal을 닫기 위한 함수
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
+  const navigate = useNavigate();
+  const handleClickHome = () => {
+    navigate('/');
+  }
+
   return (
     <div className="problem-layout-01">
       <div className="problem-rec-layout">
         <div className="problem-rec-left">
-          <h3>식당 추천</h3>
+          <h3 style={{color:'black'}}>식당 추천</h3>
           <br />
           <span>선택한 카테고리({category})를</span>
           <br />
@@ -236,8 +244,8 @@ const Rec = () => {
           <br />
           <span>식당입니다.</span>
           <br />
-          <button className="rec-more-btn">
-            추천 식당 더 보기 +
+          <button className="rec-more-btn" onClick={handleClickHome}>
+            홈으로 ...
           </button>
         </div>
 
@@ -264,7 +272,7 @@ const Rec = () => {
                 return (
                   <SwiperSlide className='problem-rec-swiperslide'>
                     {/* onClick={() => window.open(`https://www.acmicpc.net/problem/${problem.number}`, '_blank')} */}
-                    <div className='problem-item' onClick={showModal}>
+                    <div className='problem-item' onClick={() => showModal(restaurant.name)}>
                       <div className='card-top'>
                         <div className='problem-item-title'>{restaurant.name}</div>
                         <div className='problem-item-num font-PreR'>예약하기</div>
@@ -297,9 +305,10 @@ const Rec = () => {
             }
           </Swiper>
         </div>
-        <ReserveModal visible={isModalVisible} onCancel={handleCancel} />
+        <ReserveModal visible={isModalVisible} onCancel={handleCancel} rsName={rsName} />
         </>
       </div>
+      <Reservation selectedList={selectedList}></Reservation>
     </div>
   )
 }
