@@ -1,7 +1,7 @@
 .HomeContainer {
-  background-color: #222;
+  background-color: white;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -10,7 +10,7 @@ a,h1,h2,h3,h4,h5,h6 {
 }
 
 a:hover, a:hover > * {
-  color: grey;
+  color: rgb(179, 179, 179);
 }
 
 .categories--menu-container {
@@ -195,6 +195,12 @@ li.category.isActive {
     bottom: -5rem;
     transition: opacity 200ms ease;
     font-size: 20px;
+    a {
+      color: black;
+    }
+    a:hover {
+      color: gray;
+    }
 }
 
 .focused .isActive .category--closeButton {
@@ -212,8 +218,8 @@ li.category.isActive {
   transition: width 500ms ease;
 }
 .categories--menu-container:not(.focused) li.category:hover .category--name {
-  border-color: #eee;
-  color: #eee;
+  border-color: black;
+  color: black;
 }
 
 /*Nav*/

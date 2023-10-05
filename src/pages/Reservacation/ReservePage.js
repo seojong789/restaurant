@@ -1,10 +1,11 @@
 import React from 'react'
-import KakaoMap from '../../components/KakaoMap/KakaoMap'
+import Reservation from '../../components/Reservation/Reservation'
+import Rec from '../../components/Reservation/Rec'
 
 const ReservePage = () => {
   return (
     <div>
-      <KakaoMap></KakaoMap>
+      <Rec></Rec>
     </div>
   )
 }

@@ -197,7 +197,8 @@ function Collection() {
 
 function Home() {
     return (
-        <div className="HomeContainer">
+        <div style={{display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center'}} className="HomeContainer">
+            <h1 style={{color:'black', marginTop:'3%', marginBottom:'0'}}>어디갈래</h1>
             <Collection />
         </div>
     );
